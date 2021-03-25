@@ -1,0 +1,19 @@
+{
+  "homepage-slides": [
+    {
+      "id": 1,
+      "title": "baby get back",
+      "src": "https://source.unsplash.com/random"
+    },
+    {
+      "id": 2,
+      "title": "get get",
+      "src": "https://source.unsplash.com/random"
+    },
+    {
+      "id": 3,
+      "title": "la la",
+      "src": "https://source.unsplash.com/random"
+    }
+  ]
+}
