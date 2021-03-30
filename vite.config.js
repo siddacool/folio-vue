@@ -12,6 +12,7 @@ export default defineConfig({
       // eslint-disable-next-line no-undef
       components: path.resolve(__dirname, '/src/components'),
       // eslint-disable-next-line no-undef
+      helpers: path.resolve(__dirname, '/src/helpers'),
     },
   },
 });
