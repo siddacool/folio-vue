@@ -4,9 +4,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "start-server": "nodemon --ignore ./pack-pack/db.json ./pack-pack/server.js"
   },
   "dependencies": {
+    "fastify": "^3.14.1",
+    "fastify-cors": "^5.2.0",
+    "lowdb": "^1.0.0",
     "vue": "^3.0.5"
   },
   "devDependencies": {
@@ -15,8 +19,9 @@
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.8.0",
+    "nodemon": "^2.0.7",
+    "pack-pack": "file:./pack-pack/",
     "prettier": "^2.2.1",
-    "vite": "^2.1.0",
-    "pack-pack": "file:./pack-pack/"
+    "vite": "^2.1.0"
   }
 }
