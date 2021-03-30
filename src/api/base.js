@@ -15,9 +15,9 @@ const getAllHomeSlidesBase = async () => {
       homepageSlides = db.homepage_slides;
     }
 
-    Promise.resolve(homepageSlides);
+    return Promise.resolve(homepageSlides);
   } catch (e) {
-    Promise.reject(e);
+    return Promise.reject(e);
   }
 };
 
