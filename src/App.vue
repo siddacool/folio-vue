@@ -1,16 +1,12 @@
-<template>Hi</template>
+<template>
+  <router-view />
+</template>
 
 <script setup>
-import homeSlidesApi from 'api/home-slides';
+import { useMainStore } from 'stores/main';
+const mainStore = useMainStore();
 
-homeSlidesApi
-  .getHomeSlides()
-  .then((d) => {
-    console.log(d);
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+console.log(mainStore.name);
 </script>
 
 <style>

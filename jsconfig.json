@@ -11,6 +11,15 @@
       "@api/*": [
         "/api/*"
       ],
+      "@stores/*": [
+        "/stores/*"
+      ],
+      "@pages/*": [
+        "/pages/*"
+      ],
+      "@router/*": [
+        "/router/*"
+      ]
     }
   }
 }
