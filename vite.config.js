@@ -18,9 +18,11 @@ export default defineConfig({
       // eslint-disable-next-line no-undef
       stores: path.resolve(__dirname, '/src/stores'),
       // eslint-disable-next-line no-undef
+      router: path.resolve(__dirname, '/src/router'),
+      // eslint-disable-next-line no-undef
       pages: path.resolve(__dirname, '/src/pages'),
       // eslint-disable-next-line no-undef
-      router: path.resolve(__dirname, '/src/router'),
+      views: path.resolve(__dirname, '/src/views'),
     },
   },
 });

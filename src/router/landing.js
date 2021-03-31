@@ -1,9 +1,19 @@
-import Home from 'pages/Home.vue';
-
 export default [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'Landing',
+    component: () => import('views/Landing.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: () => import('pages/Home.vue'),
+      },
+      {
+        path: 'album/:id',
+        name: 'Album',
+        component: () => import('pages/Album.vue'),
+      },
+    ],
   },
 ];
