@@ -1,7 +1,9 @@
 import db from 'pack-pack/db.json';
 import { isDevelopment } from 'helpers/utils';
 
-const serverUrl = 'http://localhost:8080';
+const serverUrlMain = 'http://localhost:8080';
+
+export const serverUrl = serverUrlMain;
 
 const getAllHomeSlidesBase = async () => {
   try {
@@ -9,7 +11,7 @@ const getAllHomeSlidesBase = async () => {
 
     if (isDevelopment) {
       homepageSlides = await fetch(
-        `${serverUrl}/homepage-slides`,
+        `${serverUrlMain}/homepage-slides`,
       ).then((response) => response.json());
     } else {
       homepageSlides = db.homepage_slides;

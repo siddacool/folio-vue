@@ -9,6 +9,11 @@ export default [
         name: 'Dashbaord',
         component: () => import('pages/admin/Dashbaord.vue'),
       },
+      {
+        path: 'home-slides',
+        name: 'Home Slides',
+        component: () => import('pages/admin/HomeSlides.vue'),
+      },
     ],
   },
 ];

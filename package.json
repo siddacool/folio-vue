@@ -5,12 +5,14 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "start-server": "nodemon --ignore ./pack-pack/db.json ./pack-pack/server.js"
+    "start-server": "nodemon --ignore ./pack-pack/db.json ./pack-pack/server.js",
+    "start": "npm run dev & npm run start-server"
   },
   "dependencies": {
     "fastify": "^3.14.1",
     "fastify-cors": "^5.2.0",
     "lowdb": "^1.0.0",
+    "nanoid": "^3.1.22",
     "pinia": "^2.0.0-alpha.8",
     "vue": "^3.0.5",
     "vue-router": "^4.0.5"
