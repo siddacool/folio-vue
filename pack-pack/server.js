@@ -3,7 +3,7 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const fastify = require('fastify')({ logger: false });
 const fileUpload = require('fastify-file-upload');
-const { writeFilePromise, getFileExtentionFromMimeType } = require('./utils');
+const { writeFilePromise, getFileExtensionFromMimeType } = require('./utils');
 const { nanoid } = require('nanoid');
 
 let mainPath = __dirname;
@@ -61,20 +61,24 @@ fastify.post('/homepage-slides', async (request, reply) => {
   return db.get('homepage_slides').value();
 });
 
+fastify.get('/images', async () => {
+  return db.get('images').value();
+});
+
 fastify.post('/images', async (request, reply) => {
   try {
     const files = request.raw.files;
 
     let fileArr = [];
     for (let key in files) {
-      const extention = getFileExtentionFromMimeType(files[key].mimetype);
+      const extension = getFileExtensionFromMimeType(files[key].mimetype);
 
       fileArr.push({
         id: nanoid(),
         mimetype: files[key].mimetype,
         data: files[key].data,
         preFix: 'pic_',
-        extention,
+        extension,
       });
     }
 
@@ -82,11 +86,17 @@ fastify.post('/images', async (request, reply) => {
       writeFilePromise(file, imageBucket),
     );
 
-    const uploadPromises = await Promise.all(filesMapper);
+    let uploadPromises = await Promise.all(filesMapper);
 
-    console.log(uploadPromises);
+    uploadPromises = uploadPromises.map(({ id, mimetype, extension, preFix }) =>
+      Object.assign({ id, mimetype, extension, preFix }),
+    );
 
-    reply.send(fileArr);
+    db.get('images')
+      .push(...uploadPromises)
+      .write();
+
+    return JSON.stringify(uploadPromises);
   } catch (err) {
     reply.code(422);
     return new Error(err);

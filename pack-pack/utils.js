@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const writeFilePromise = (file, path) => {
   return new Promise((resolve, reject) => {
-    let fileUrl = `${path}/${file.preFix}${file.id}.${file.extention}`;
+    let fileUrl = `${path}/${file.preFix}${file.id}.${file.extension}`;
     fs.writeFile(fileUrl, file.data, (err) => {
       if (err) reject(err);
       else
@@ -14,21 +14,21 @@ const writeFilePromise = (file, path) => {
   });
 };
 
-const getFileExtentionFromMimeType = (mineType) => {
-  let extention = '';
+const getFileExtensionFromMimeType = (mineType) => {
+  let extension = '';
 
   switch (mineType) {
     case 'image/jpeg':
-      extention = 'jpg';
+      extension = 'jpg';
       break;
     default:
-      extention = '';
+      extension = '';
   }
 
-  return extention;
+  return extension;
 };
 
 module.exports = {
   writeFilePromise,
-  getFileExtentionFromMimeType,
+  getFileExtensionFromMimeType,
 };

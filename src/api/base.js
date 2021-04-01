@@ -5,22 +5,20 @@ const serverUrlMain = 'http://localhost:8080';
 
 export const serverUrl = serverUrlMain;
 
-const getAllHomeSlidesBase = async () => {
+export const cachedFetch = async (url, fieldName) => {
   try {
-    let homepageSlides = [];
+    let data = null;
 
     if (isDevelopment) {
-      homepageSlides = await fetch(
-        `${serverUrlMain}/homepage-slides`,
-      ).then((response) => response.json());
+      data = await fetch(`${serverUrlMain}${url}`).then((response) =>
+        response.json(),
+      );
     } else {
-      homepageSlides = db.homepage_slides;
+      data = db[fieldName];
     }
 
-    return Promise.resolve(homepageSlides);
-  } catch (e) {
-    return Promise.reject(e);
+    return Promise.resolve(data);
+  } catch (error) {
+    return Promise.reject(error);
   }
 };
-
-export const getAllHomeSlides = getAllHomeSlidesBase;

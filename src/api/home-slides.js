@@ -1,7 +1,7 @@
-import { getAllHomeSlides, serverUrl } from './base';
+import { cachedFetch, serverUrl } from './base';
 
 export default {
-  getHomeSlides: getAllHomeSlides,
+  getHomeSlides: () => cachedFetch('/homepage-slides', 'homepage_slides'),
   addHomeSlide: ({ name, url }) =>
     fetch(`${serverUrl}/homepage-slides`, {
       method: 'POST',

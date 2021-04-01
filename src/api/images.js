@@ -1,6 +1,7 @@
-import { serverUrl } from './base';
+import { cachedFetch, serverUrl } from './base';
 
 export default {
+  getImages: () => cachedFetch('/images', 'images'),
   imageUpload: (formData) => {
     return fetch(`${serverUrl}/images`, {
       method: 'POST',
