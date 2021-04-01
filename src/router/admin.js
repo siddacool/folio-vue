@@ -3,6 +3,9 @@ export default [
     path: '/admin',
     name: 'Admin',
     component: () => import('views/Admin.vue'),
+    meta: {
+      excludeFromSideBar: true,
+    },
     children: [
       {
         path: '',
