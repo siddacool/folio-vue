@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import imageUploadApi from 'api/image-upload';
+import imagesApi from 'api/images';
 
 export const useImageUploadAdminStore = defineStore({
   id: 'home-slides-admin',
@@ -16,7 +16,7 @@ export const useImageUploadAdminStore = defineStore({
 
         this.isImageFetching = true;
 
-        const images = await imageUploadApi.imageUpload(formData);
+        const images = await imagesApi.imageUpload(formData);
 
         console.log(images);
 

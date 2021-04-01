@@ -2,7 +2,7 @@ import { serverUrl } from './base';
 
 export default {
   imageUpload: (formData) => {
-    return fetch(`${serverUrl}/image`, {
+    return fetch(`${serverUrl}/images`, {
       method: 'POST',
       credentials: 'same-origin',
       body: formData,

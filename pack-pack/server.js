@@ -1,18 +1,20 @@
 const path = require('path');
-const fs = require('fs');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const fastify = require('fastify')({ logger: false });
 const fileUpload = require('fastify-file-upload');
+const { writeFilePromise, getFileExtentionFromMimeType } = require('./utils');
 const { nanoid } = require('nanoid');
 
 let mainPath = __dirname;
 mainPath = mainPath.replace('/pack-pack', '');
 
+const imageBucket = `${mainPath}/public/image-bucket`;
+
 const adapter = new FileSync(path.resolve(`${__dirname}/db.json`));
 const db = low(adapter);
 
-db.defaults({ homepage_slides: [] }).write();
+db.defaults({ homepage_slides: [], images: [] }).write();
 
 fastify.register(require('fastify-cors'), {
   // put your options here
@@ -59,38 +61,36 @@ fastify.post('/homepage-slides', async (request, reply) => {
   return db.get('homepage_slides').value();
 });
 
-function writeFile(file) {
-  return new Promise((resolve, reject) => {
-    let fileUrl = `${mainPath}/public/image-bucket/${file.name}`;
-    fs.writeFile(fileUrl, file.data, (err) => {
-      if (err) reject(err);
-      else resolve(fileUrl);
-    });
-  });
-}
+fastify.post('/images', async (request, reply) => {
+  try {
+    const files = request.raw.files;
 
-fastify.post('/image', async (request, reply) => {
-  const files = request.raw.files;
+    let fileArr = [];
+    for (let key in files) {
+      const extention = getFileExtentionFromMimeType(files[key].mimetype);
 
-  let fileArr = [];
-  for (let key in files) {
-    fileArr.push({
-      name: files[key].name,
-      mimetype: files[key].mimetype,
-      data: files[key].data,
-    });
+      fileArr.push({
+        id: nanoid(),
+        mimetype: files[key].mimetype,
+        data: files[key].data,
+        preFix: 'pic_',
+        extention,
+      });
+    }
+
+    const filesMapper = fileArr.map((file) =>
+      writeFilePromise(file, imageBucket),
+    );
+
+    const uploadPromises = await Promise.all(filesMapper);
+
+    console.log(uploadPromises);
+
+    reply.send(fileArr);
+  } catch (err) {
+    reply.code(422);
+    return new Error(err);
   }
-
-  const filesMapper = fileArr.map((file) => writeFile(file));
-
-  Promise.all(filesMapper).then(
-    () => {
-      reply.send(fileArr);
-    },
-    (err) => {
-      throw err;
-    },
-  );
 });
 
 // Run the server!
