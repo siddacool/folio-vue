@@ -9,7 +9,8 @@ Portfolio site
 Follow these step to configure data server
 
 1. copy `pack-pack/db.json.sample` as `pack-pack/db.json`
-2. start server using `npm run start-server`
+2. duplicate folder `public/image-bucket.sample/` as `public/image-bucket/`
+3. start server using `npm run start-server`
 
 ### Launch site locally
 
@@ -18,3 +19,7 @@ Follow these step to configure data server
 ### Build site
 
 `npm run build`
+
+### launch all dev processes at once
+
+`npm start`
