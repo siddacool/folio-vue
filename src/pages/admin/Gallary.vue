@@ -35,7 +35,6 @@ const handleImageUpload = (e) => {
   }
 
   const formData = new FormData();
-  formData.append('title', 'yo');
   formData.append('file', image);
 
   store.uploadImage(formData);
