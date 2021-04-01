@@ -2,12 +2,7 @@
   <router-view />
 </template>
 
-<script setup>
-import { useMainStore } from 'stores/main';
-const mainStore = useMainStore();
-
-console.log(mainStore.name);
-</script>
+<script setup></script>
 
 <style>
 #app {
