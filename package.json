@@ -12,8 +12,6 @@
     "fastify": "^3.14.1",
     "fastify-cors": "^5.2.0",
     "fastify-file-upload": "^3.0.0",
-    "fastify-multipart": "^4.0.3",
-    "fs-extra": "^9.1.0",
     "lowdb": "^1.0.0",
     "nanoid": "^3.1.22",
     "pinia": "^2.0.0-alpha.8",
@@ -21,14 +19,18 @@
     "vue-router": "^4.0.5"
   },
   "devDependencies": {
+    "@tailwindcss/jit": "^0.1.18",
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
+    "autoprefixer": "^10.2.5",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^7.8.0",
     "nodemon": "^2.0.7",
     "pack-pack": "file:./pack-pack/",
+    "postcss": "^8.2.9",
     "prettier": "^2.2.1",
+    "tailwindcss": "^2.0.4",
     "vite": "^2.1.0"
   }
 }
