@@ -79,6 +79,7 @@ fastify.post('/images', async (request, reply) => {
         data: files[key].data,
         preFix: 'pic_',
         extension,
+        name: files[key].name,
       });
     }
 
@@ -88,8 +89,9 @@ fastify.post('/images', async (request, reply) => {
 
     let uploadPromises = await Promise.all(filesMapper);
 
-    uploadPromises = uploadPromises.map(({ id, mimetype, extension, preFix }) =>
-      Object.assign({ id, mimetype, extension, preFix }),
+    uploadPromises = uploadPromises.map(
+      ({ id, mimetype, extension, preFix, name }) =>
+        Object.assign({ id, mimetype, extension, preFix, name }),
     );
 
     db.get('images')
