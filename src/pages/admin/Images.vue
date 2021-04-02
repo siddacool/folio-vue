@@ -1,20 +1,25 @@
 <template>
-  Images
-  <input ref="imageInput" type="file" @change="handleImageUpload" />
+  <MainSection title="Images">
+    <div>
+      <input ref="imageInput" type="file" @change="handleImageUpload" />
 
-  <ul class="mt-8">
-    <li v-for="image in store.images" :key="image.id" class="mb-4">
-      <img
-        class="block w-60 h-auto"
-        :src="`/image-bucket/${image.preFix}${image.id}.${image.extension}`"
-        alt=""
-      />
-    </li>
-  </ul>
+      <ul class="mt-8">
+        <li v-for="image in store.images" :key="image.id" class="mb-4">
+          <img
+            class="block w-60 h-auto"
+            :src="`/image-bucket/${image.preFix}${image.id}.${image.extension}`"
+            alt=""
+          />
+        </li>
+      </ul>
+    </div>
+  </MainSection>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
+
+import MainSection from 'components/AdminMainSection.vue';
 
 import { useImagesAdminStore } from 'stores/admin/images';
 const store = useImagesAdminStore();

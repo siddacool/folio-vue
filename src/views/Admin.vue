@@ -2,10 +2,7 @@
   <div class="flex flex-wrap h-screen">
     <Header />
     <Drawer />
-    <main
-      class="bg-gray-200 h-full"
-      :class="store.showMenu ? 'flex-1' : 'w-full'"
-    >
+    <main class="bg-gray-200" :class="store.showMenu ? 'flex-1' : 'w-full'">
       <router-view></router-view>
     </main>
   </div>
@@ -23,5 +20,6 @@ const store = useMainAdminStore();
 main {
   overflow-x: hidden;
   overflow-y: auto;
+  height: calc(100% - 56px);
 }
 </style>
