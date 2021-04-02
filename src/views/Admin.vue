@@ -2,15 +2,21 @@
   <div class="flex flex-wrap h-screen">
     <Header />
     <Drawer />
-    <main class="bg-gray-200 p-8 flex-1 h-full">
+    <main
+      class="bg-gray-200 h-full"
+      :class="store.showMenu ? 'flex-1' : 'w-full'"
+    >
       <router-view></router-view>
     </main>
   </div>
 </template>
 
 <script setup>
+import { useMainAdminStore } from 'stores/admin/main';
 import Header from 'components/TheAdminHeader.vue';
 import Drawer from 'components/TheAdminDrawer.vue';
+
+const store = useMainAdminStore();
 </script>
 
 <style scoped>

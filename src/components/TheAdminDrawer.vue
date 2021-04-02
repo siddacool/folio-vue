@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-52 pt-6 shadow-md relative">
+  <nav v-if="store.showMenu" class="w-52 pt-6 shadow-md relative">
     <ul>
       <li
         v-for="route in routes"
@@ -17,7 +17,10 @@
 </template>
 
 <script setup>
+import { useMainAdminStore } from 'stores/admin/main';
 import { useRouter, useRoute } from 'vue-router';
+
+const store = useMainAdminStore();
 
 const router = useRouter();
 let routes = router
@@ -33,8 +36,6 @@ const dahsbaordRoute = router.getRoutes().find((r) => r.name == 'Dashbaord');
 
 routes = [dahsbaordRoute, ...routes];
 const routeCurrunt = useRoute();
-
-console.log(routes);
 
 const handleRouteClick = (path) => {
   router.push(path);
