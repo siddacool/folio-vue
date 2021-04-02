@@ -1,5 +1,9 @@
 <template>
-  <th class="text-left p-2 text-xs" :style="`min-width: ${minWidth}px`">
+  <th
+    class="text-left p-2 text-xs"
+    :class="firstChild ? 'pl-4' : ''"
+    :style="`min-width: ${minWidth}px`"
+  >
     <slot />
   </th>
 </template>
@@ -11,6 +15,10 @@ defineProps({
   minWidth: {
     type: Number,
     default: 40,
+  },
+  firstChild: {
+    type: Boolean,
+    default: false,
   },
 });
 </script>

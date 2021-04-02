@@ -1,16 +1,6 @@
 <template>
   <MainSection title="Images">
     <div class="grid grid-flow-row gap-4">
-      <!-- <ul class="mt-8">
-        <li v-for="image in store.images" :key="image.id" class="mb-4">
-          <img
-            class="block w-60 h-auto"
-            :src="`/image-bucket/${image.preFix}${image.id}.${image.extension}`"
-            alt=""
-          />
-        </li>
-      </ul> -->
-
       <Table :items="store.images" :columns="columns">
         <template #header>
           <div class="flex pt-4 px-4 pb-1 text-sm">
@@ -29,6 +19,21 @@
                 @change="handleImageUpload"
               />
             </label>
+          </div>
+        </template>
+
+        <template #td="{ row, colName }">
+          <div v-if="colName === 'name'" class="flex items-center">
+            <img
+              class="block w-10 h-auto mr-4"
+              :src="`/image-bucket/${row.preFix}${row.id}.${row.extension}`"
+              alt=""
+            />
+
+            {{ row[colName] }}
+          </div>
+          <div v-else>
+            {{ row[colName] ? row[colName] : '' }}
           </div>
         </template>
       </Table>
@@ -69,10 +74,6 @@ const handleImageUpload = (e) => {
 };
 
 const columns = [
-  {
-    id: 'slide',
-    displayName: '',
-  },
   {
     id: 'name',
     displayName: 'Name',
