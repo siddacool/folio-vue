@@ -13,9 +13,9 @@ export default [
         component: () => import('pages/admin/Dashbaord.vue'),
       },
       {
-        path: 'gallary',
-        name: 'Gallary',
-        component: () => import('pages/admin/Gallary.vue'),
+        path: 'images',
+        name: 'Images',
+        component: () => import('pages/admin/Images.vue'),
       },
       {
         path: 'home-slides',

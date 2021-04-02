@@ -23,3 +23,14 @@ Follow these step to configure data server
 ### launch all dev processes at once
 
 `npm start`
+
+## Built with
+
+Sepical thanks to the following tools
+
+- Vue 3
+- Vite (build tool)
+- tailwindcss
+- Fastify & fastify-file-upload (pack-pack server)
+- lowdb (pack-pack database)
+- [Heroicons](https://heroicons.dev/) (svg icon set 💖)

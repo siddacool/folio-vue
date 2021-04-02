@@ -8,13 +8,16 @@
 
     <h2 class="text-xl font-medium text-gray-600">Folio HQ</h2>
 
-    <router-link to="/" target="_blank">Home</router-link>
+    <router-link to="/" target="_blank" class="block ml-auto">
+      <icon-home />
+    </router-link>
   </header>
 </template>
 
 <script setup>
 import { useMainAdminStore } from 'stores/admin/main';
-import iconMenu from 'components/icons/Menu.vue';
+import IconMenu from 'components/icons/Menu.vue';
+import IconHome from 'components/icons/Home.vue';
 
 const store = useMainAdminStore();
 </script>

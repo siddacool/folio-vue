@@ -1,5 +1,5 @@
 <template>
-  Gallary
+  Images
   <input ref="imageInput" type="file" @change="handleImageUpload" />
 
   <ul class="mt-8">

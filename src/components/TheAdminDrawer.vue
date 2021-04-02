@@ -1,5 +1,5 @@
 <template>
-  <nav v-if="store.showMenu" class="w-52 pt-6 shadow-md relative">
+  <nav v-if="store.showMenu" class="w-52 pt-3 shadow-md relative">
     <ul>
       <li
         v-for="route in routes"
