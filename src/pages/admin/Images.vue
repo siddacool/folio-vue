@@ -40,6 +40,9 @@
 
             {{ row[colName] }}
           </div>
+          <div v-else-if="colName === 'createdAt'">
+            {{ formattedDate(row[colName]) }}
+          </div>
           <div v-else>
             {{ row[colName] ? row[colName] : '' }}
           </div>
@@ -55,8 +58,8 @@ import { onMounted, ref } from 'vue';
 import MainSection from 'components/AdminMainSection.vue';
 import Table from 'components/ui/Table.vue';
 import ThreeDotsLoader from 'components/loaders/ThreeDots.vue';
-
 import { useImagesAdminStore } from 'stores/admin/images';
+import { formattedDate } from 'helpers/time-master';
 
 const maxLimit = 10;
 const store = useImagesAdminStore();
@@ -104,6 +107,10 @@ const columns = [
   {
     id: 'mimetype',
     displayName: 'Type',
+  },
+  {
+    id: 'createdAt',
+    displayName: 'created at',
   },
 ];
 </script>
