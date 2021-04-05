@@ -22,6 +22,13 @@
           </div>
         </template>
 
+        <template #footer>
+          <ThreeDotsLoader
+            v-show="store.isImageFetching"
+            class="w-12 my-3 mx-4 block"
+          />
+        </template>
+
         <template #td="{ row, colName }">
           <div v-if="colName === 'name'" class="flex items-center">
             <img
@@ -46,6 +53,7 @@ import { onMounted, ref } from 'vue';
 
 import MainSection from 'components/AdminMainSection.vue';
 import Table from 'components/ui/Table.vue';
+import ThreeDotsLoader from 'components/loaders/ThreeDots.vue';
 
 import { useImagesAdminStore } from 'stores/admin/images';
 const store = useImagesAdminStore();
