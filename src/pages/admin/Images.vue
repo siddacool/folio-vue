@@ -25,7 +25,7 @@
         <template #td="{ row, colName }">
           <div v-if="colName === 'name'" class="flex items-center">
             <img
-              class="block w-10 h-auto mr-4"
+              class="block w-auto h-12 mr-4"
               :src="`/image-bucket/${row.preFix}${row.id}.${row.extension}`"
               alt=""
             />
