@@ -26,7 +26,7 @@ export const useImagesAdminStore = defineStore({
         this.isImageFetching = false;
       }
     },
-    async uploadImage(formData) {
+    async upload(formData) {
       try {
         this.uploadedImages = [];
         if (this.isImageFetching) {

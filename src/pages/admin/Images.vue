@@ -16,6 +16,7 @@
                 type="file"
                 accept="image/png, image/jpeg"
                 :disabled="store.isImageFetching"
+                multiple
                 @change="handleImageUpload"
               />
             </label>
@@ -56,6 +57,8 @@ import Table from 'components/ui/Table.vue';
 import ThreeDotsLoader from 'components/loaders/ThreeDots.vue';
 
 import { useImagesAdminStore } from 'stores/admin/images';
+
+const maxLimit = 10;
 const store = useImagesAdminStore();
 
 const imageInput = ref(null);
@@ -67,16 +70,28 @@ onMounted(() => {
 const handleImageUpload = (e) => {
   e.preventDefault();
 
-  const image = imageInput.value.files[0];
+  const images = imageInput.value.files;
 
-  if (!image) {
+  if (!images || !images.length) {
+    imageInput.value = null;
+    return;
+  }
+
+  if (images.length > maxLimit) {
+    imageInput.value = null;
     return;
   }
 
   const formData = new FormData();
-  formData.append('file', image);
+  const loopLength = images.length < maxLimit ? images.length : maxLimit;
 
-  store.uploadImage(formData);
+  for (let i = 0; i < loopLength; i++) {
+    formData.append(`file_${i}`, images[i]);
+  }
+
+  console.log(formData);
+
+  store.upload(formData);
 
   imageInput.value = null;
 };

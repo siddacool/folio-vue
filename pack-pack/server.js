@@ -65,6 +65,8 @@ fastify.post('/images', async (request, reply) => {
   try {
     const files = request.raw.files;
 
+    console.log(request);
+
     let fileArr = [];
     for (let key in files) {
       const extension = getFileExtensionFromMimeType(files[key].mimetype);
