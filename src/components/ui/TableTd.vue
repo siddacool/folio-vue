@@ -1,9 +1,5 @@
 <template>
-  <td
-    class="text-left p-2 text-sm"
-    :class="firstChild ? 'pl-4' : ''"
-    :style="`min-width: ${minWidth}px`"
-  >
+  <td class="text-left p-2 text-sm" :class="firstChild ? 'pl-4' : ''">
     <slot />
   </td>
 </template>
@@ -12,10 +8,6 @@
 import { defineProps } from 'vue';
 
 defineProps({
-  minWidth: {
-    type: Number,
-    default: 40,
-  },
   firstChild: {
     type: Boolean,
     default: false,
