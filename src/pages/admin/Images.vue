@@ -26,7 +26,7 @@
           <div v-if="colName === 'name'" class="flex items-center">
             <img
               class="block w-auto h-12 mr-4"
-              :src="`/image-bucket/${row.preFix}${row.id}.${row.extension}`"
+              :src="`/image-bucket/${row.preFix}${row.id}${row.thumbPostFix}.${row.extension}`"
               alt=""
             />
 

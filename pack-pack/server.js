@@ -85,7 +85,7 @@ fastify.post('/images', async (request, reply) => {
     let uploadPromises = await Promise.all(filesMapper);
 
     uploadPromises = uploadPromises.map(
-      ({ id, mimetype, extension, preFix, name }) =>
+      ({ id, mimetype, extension, preFix, name, thumbPostFix }) =>
         Object.assign({
           id,
           mimetype,
@@ -93,6 +93,7 @@ fastify.post('/images', async (request, reply) => {
           preFix,
           name,
           createdAt: dayjs().format(),
+          thumbPostFix,
         }),
     );
 

@@ -54,8 +54,8 @@ const exportImageFile = async ({
     }
 
     const imageThumb = await (mimetype === 'image/jpeg'
-      ? sharp(data).webp().resize(300)
-      : sharp(data).resize(300));
+      ? sharp(data).webp().resize(500)
+      : sharp(data).resize(500));
 
     const ext = mimetype === 'image/jpeg' ? 'webp' : extension;
 
