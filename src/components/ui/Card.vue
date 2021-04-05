@@ -1,5 +1,8 @@
 <template>
-  <div class="bg-white shadow rounded-md" :class="noPadding ? '' : 'p-4'">
+  <div
+    class="bg-white shadow rounded-md overflow-x-auto overscroll-y-auto"
+    :class="noPadding ? '' : 'p-4'"
+  >
     <slot />
   </div>
 </template>
