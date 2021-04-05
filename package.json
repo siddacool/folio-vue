@@ -9,12 +9,14 @@
     "start": "npm run dev & npm run start-server"
   },
   "dependencies": {
+    "dayjs": "^1.10.4",
     "fastify": "^3.14.1",
     "fastify-cors": "^5.2.0",
     "fastify-file-upload": "^3.0.0",
     "lowdb": "^1.0.0",
     "nanoid": "^3.1.22",
     "pinia": "^2.0.0-alpha.8",
+    "sharp": "^0.28.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.5"
   },

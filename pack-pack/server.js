@@ -3,13 +3,9 @@ const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const fastify = require('fastify')({ logger: false });
 const fileUpload = require('fastify-file-upload');
-const { writeFilePromise, getFileExtensionFromMimeType } = require('./utils');
+const dayjs = require('dayjs');
+const { exportImageFile, getFileExtensionFromMimeType } = require('./utils');
 const { nanoid } = require('nanoid');
-
-let mainPath = __dirname;
-mainPath = mainPath.replace('/pack-pack', '');
-
-const imageBucket = `${mainPath}/public/image-bucket`;
 
 const adapter = new FileSync(path.resolve(`${__dirname}/db.json`));
 const db = low(adapter);
@@ -78,20 +74,26 @@ fastify.post('/images', async (request, reply) => {
         mimetype: files[key].mimetype,
         data: files[key].data,
         preFix: 'pic_',
+        thumbPostFix: '__thumb',
         extension,
         name: files[key].name,
       });
     }
 
-    const filesMapper = fileArr.map((file) =>
-      writeFilePromise(file, imageBucket),
-    );
+    const filesMapper = fileArr.map((file) => exportImageFile(file));
 
     let uploadPromises = await Promise.all(filesMapper);
 
     uploadPromises = uploadPromises.map(
       ({ id, mimetype, extension, preFix, name }) =>
-        Object.assign({ id, mimetype, extension, preFix, name }),
+        Object.assign({
+          id,
+          mimetype,
+          extension,
+          preFix,
+          name,
+          createdAt: dayjs().format(),
+        }),
     );
 
     db.get('images')
