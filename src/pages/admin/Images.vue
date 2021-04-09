@@ -1,7 +1,11 @@
 <template>
   <MainSection title="Images">
     <div class="grid grid-flow-row gap-4">
-      <Table :items="store.images" :columns="columns">
+      <Table
+        :items="store.images"
+        :columns="columns"
+        @tableDataClick="handleTdClick"
+      >
         <template #header>
           <div class="flex pt-4 px-4 pb-1 text-sm">
             <label
@@ -96,6 +100,10 @@ const handleImageUpload = (e) => {
   imageInput.value = null;
 };
 
+const handleTdClick = (column, { name }) => {
+  console.log(column, name);
+};
+
 const columns = [
   {
     id: 'name',
@@ -111,7 +119,7 @@ const columns = [
   },
   {
     id: 'createdAt',
-    displayName: 'created at',
+    displayName: 'Created at',
     minWidth: 300,
   },
 ];

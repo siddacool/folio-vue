@@ -15,6 +15,7 @@
               :first-child="indexCol === 0"
               :min-width="column.minWidth ? column.minWidth : null"
               :max-width="column.maxWidth ? column.maxWidth : null"
+              @click="emit('tableDataClick', column, item)"
             >
               <slot name="td" :row="item" :colName="column.id">
                 {{ item[column.id] ? item[column.id] : '' }}
@@ -31,10 +32,12 @@
 </template>
 
 <script setup>
-import { defineProps, toRefs } from 'vue';
+import { defineProps, defineEmit, toRefs } from 'vue';
 import TableHeader from './TableHeader.vue';
 import Td from './TableTd.vue';
 import Card from './Card.vue';
+
+const emit = defineEmit();
 
 const props = defineProps({
   items: {
