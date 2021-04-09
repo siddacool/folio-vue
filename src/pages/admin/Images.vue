@@ -43,9 +43,6 @@
           <div v-else-if="colName === 'createdAt'">
             {{ formattedDate(row[colName]) }}
           </div>
-          <div v-else>
-            {{ row[colName] ? row[colName] : '' }}
-          </div>
         </template>
       </Table>
     </div>

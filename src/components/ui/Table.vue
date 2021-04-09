@@ -16,7 +16,9 @@
               :min-width="column.minWidth ? column.minWidth : null"
               :max-width="column.maxWidth ? column.maxWidth : null"
             >
-              <slot name="td" :row="item" :colName="column.id"></slot>
+              <slot name="td" :row="item" :colName="column.id">
+                {{ item[column.id] ? item[column.id] : '' }}
+              </slot>
             </Td>
           </div>
         </div>
