@@ -1,7 +1,13 @@
 <template>
-  <td class="text-left p-2 text-sm" :class="firstChild ? 'pl-4' : ''">
+  <div
+    class="border-b border-gray-200 text-left p-2 text-sm flex-1"
+    :class="firstChild ? 'pl-8' : ''"
+    :style="`${minWidth ? `min-width: ${minWidth}px;` : ''} ${
+      maxWidth ? `max-width: ${maxWidth}px;` : ''
+    }`"
+  >
     <slot />
-  </td>
+  </div>
 </template>
 
 <script setup>
@@ -11,6 +17,12 @@ defineProps({
   firstChild: {
     type: Boolean,
     default: false,
+  },
+  minWidth: {
+    type: Number,
+  },
+  maxWidth: {
+    type: Number,
   },
 });
 </script>

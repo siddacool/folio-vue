@@ -103,14 +103,19 @@ const columns = [
   {
     id: 'name',
     displayName: 'Name',
+    minWidth: 300,
+    maxWidth: 400,
   },
   {
     id: 'mimetype',
     displayName: 'Type',
+    minWidth: 300,
+    maxWidth: 400,
   },
   {
     id: 'createdAt',
     displayName: 'created at',
+    minWidth: 300,
   },
 ];
 </script>
