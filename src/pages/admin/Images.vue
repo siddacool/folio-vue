@@ -55,6 +55,7 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 import MainSection from 'components/AdminMainSection.vue';
 import Table from 'components/ui/Table.vue';
@@ -62,6 +63,7 @@ import ThreeDotsLoader from 'components/loaders/ThreeDots.vue';
 import { useImagesAdminStore } from 'stores/admin/images';
 import { formattedDate } from 'helpers/time-master';
 
+const router = useRouter();
 const maxLimit = 10;
 const store = useImagesAdminStore();
 
@@ -100,8 +102,8 @@ const handleImageUpload = (e) => {
   imageInput.value = null;
 };
 
-const handleTdClick = (column, { name }) => {
-  console.log(column, name);
+const handleTdClick = (column, { id }) => {
+  router.push(`images/${id}`);
 };
 
 const columns = [
