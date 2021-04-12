@@ -9,4 +9,6 @@ export default {
       body: formData,
     }).then((response) => response.json());
   },
+  getImageById: (id) =>
+    fetch(`${serverUrl}/images/${id}`).then((response) => response.json()),
 };

@@ -110,6 +110,11 @@ fastify.post('/images', async (request, reply) => {
   }
 });
 
+fastify.get('/images/:id', async ({ params }) => {
+  const { id } = params;
+  return db.get('images').find({ id }).value();
+});
+
 // Run the server!
 const start = async () => {
   try {
