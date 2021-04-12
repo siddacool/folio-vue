@@ -1,5 +1,9 @@
 <template>
-  <MainSection title="Images">
+  <MainSection
+    :title="`Images / ${store.image.name ? store.image.name : ''}`"
+    back-button
+    @backPress="router.push('/admin/images')"
+  >
     <div class="grid grid-flow-row gap-4">
       <Card>
         <div v-if="store.image.id">
@@ -9,7 +13,10 @@
             :src="`/image-bucket/${store.image.preFix}${store.image.id}.${store.image.extension}`"
             alt=""
           />
-          <div>{{ store.image.name }}</div>
+          <div class="text-base mt-4">{{ store.image.name }}</div>
+          <div>
+            <Button class="mt-4" variant="solid" color="primary">Save</Button>
+          </div>
         </div>
       </Card>
     </div>
@@ -23,10 +30,13 @@ import { useRouter, useRoute } from 'vue-router';
 import { useImageEditAdminStore } from 'stores/admin/image-edit';
 import MainSection from 'components/AdminMainSection.vue';
 import Card from 'components/ui/Card.vue';
+import Button from 'components/ui/Button.vue';
 
 const store = useImageEditAdminStore();
 const route = useRoute();
 const { id } = route.params;
+
+const router = useRouter();
 
 onMounted(() => {
   store.getImageById(id);
